@@ -1,13 +1,19 @@
-function updateTime(timeElementId) {
+function updateTime() {
     var dateObj = new Date();
+
+    var hourElementId = "#time-hour";
+    var minuteElementId = "#time-minute";
+    var secondElementId = "#time-second";
 
     var hour = fixClockValue(dateObj.getHours());
     var minute = fixClockValue(dateObj.getMinutes());
     var second = fixClockValue(dateObj.getSeconds());
 
-    $(timeElementId).text(hour + ":" + minute + ":" + second);
+    $(hourElementId).text(hour + " :");
+    $(minuteElementId).text(minute);
+    $(secondElementId).text(second);
 
-    setTimeout(updateTime, 500, timeElementId);
+    setTimeout(updateTime, 500);
 }
 
 function fixClockValue(input) {

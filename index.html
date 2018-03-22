@@ -6,20 +6,43 @@
     </title>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="styles/site.css">
 
     </head>
     
     <body>
-
-        <div id="time"></div>
-        <div id="date"></div>
-        <div id="weather"></div>
-
+        <div class="grid-wrapper">
+            <div class="row grid-row">
+                <div class="col grid-unit">
+                    <div id="weather"></div>
+                </div>
+                <div class="col grid-unit">
+                    <div id="time-wrapper">
+                        <div id="time-hour"></div>
+                        <div id="time-minute"></div>
+                        <div id="time-second"></div>
+                    </div>
+                    <div id="date"></div>
+                </div>
+            </div>
+            <div class="row grid-row">
+                <div class="col grid-unit">
+                    
+                </div>
+                <div class="col grid-unit">
+                    
+                </div>
+            </div>
+        </div>
         
         <script src="scripts/datetime.js"></script>
         <script src="scripts/weather.js"></script>
+        <script src="scripts/commute.js"></script>
         <script src="scripts/site.js"></script>
     </body>
 </html>

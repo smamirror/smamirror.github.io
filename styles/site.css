@@ -2,4 +2,34 @@ body {
     background-color: #000000;
     color: #ffffff;
     font-family: 'Lato', sans-serif;
+    overflow: hidden;
+}
+
+.grid-wrapper {
+    height: 100vh;
+}
+
+.grid-row {
+    height: 50vh;
+}
+
+.grid-unit {
+    /* border: 1px solid gray; */
+}
+
+
+#time-hour, #time-minute {
+    display: inline-block;
+    font-size: 140px;
+    font-weight: bold;
+}
+
+#time-second {
+    display: inline-block;
+    color: gray;
+    font-size: 40px;
+}
+
+#date {
+    font-size: 40px;
 }

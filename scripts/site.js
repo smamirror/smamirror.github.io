@@ -1,5 +1,6 @@
 $( document ).ready(function() {
-    updateTime("#time");
+    updateTime();
     updateDate("#date");
     //updateWeather();
+    //updateCommute();
 });

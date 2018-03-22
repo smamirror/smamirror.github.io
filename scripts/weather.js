@@ -40,11 +40,11 @@ function setWeatherData(data){
 
     console.log(arrays);
 
-    $.each(arrays, function (index, date) {
-        console.log(date);
+    /* $.each(arrays, function (index, date) {
+        // console.log(date);
         var goal = 12;
 
-        currentHour = date.hour;
+        currentHour = date;
 
         var closest = currentHour.reduce(function(prev, curr) {
             return (Math.abs(curr - goal) < Math.abs(prev - goal) ? curr : prev);
@@ -52,7 +52,7 @@ function setWeatherData(data){
 
         arrays[index] = [];
         arrays[index].push(closest);
-    });
+    }); */
 
     // console.log(arrays);
 };
