@@ -1,5 +1,5 @@
 $( document ).ready(function() {
-    updateTime();
-    updateDate();
-    updateWeather();
+    updateTime("#time");
+    updateDate("#date");
+    //updateWeather();
 });

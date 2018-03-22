@@ -1,20 +1,13 @@
-function updateTime() {
-    var element = $("#time");
+function updateTime(timeElementId) {
     var dateObj = new Date();
 
-    var hour = dateObj.getHours();
-    var minute = dateObj.getMinutes();
-    var second = dateObj.getSeconds();
+    var hour = fixClockValue(dateObj.getHours());
+    var minute = fixClockValue(dateObj.getMinutes());
+    var second = fixClockValue(dateObj.getSeconds());
 
-    hour = fixClockValue(hour);
-    minute = fixClockValue(minute);
-    second = fixClockValue(second);
+    $(timeElementId).text(hour + ":" + minute + ":" + second);
 
-    var timeStr = hour + ":" + minute + ":" + second;
-
-    element.text(timeStr);
-
-    setTimeout("updateTime()", 500);
+    setTimeout(updateTime, 500, timeElementId);
 }
 
 function fixClockValue(input) {
@@ -24,18 +17,14 @@ function fixClockValue(input) {
     return input;
 };
 
-function updateDate() {
-    var element = $("#date");
+function updateDate(dateElementId) {
     var dateObj = new Date();
-    var locale = "sv-SE";
 
     var year = dateObj.getFullYear();
-    var month = dateObj.toLocaleDateString(locale, { month: "long" });
+    var month = dateObj.toLocaleDateString("sv-SE", { month: "long" });
     var day = dateObj.getDate();
 
-    var dateStr = "den " + day + " " + month + " " + year;
+    $(dateElementId).text("den " + day + " " + month + " " + year);
 
-    element.text(dateStr);
-
-    setTimeout("updateTime()", 1000);
+    setTimeout(updateDate, 1000, dateElementId);
 }
