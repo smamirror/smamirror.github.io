@@ -17,42 +17,65 @@ function setWeatherData(data){
     var list = data.timeSeries;
 
     // Initialize a new object
-    var arrays = [];
+    var dateArray = [];
+    
 
     // Loop over data
     $.each(list, function (index, item) {
         // Get value
         dateObj = new Date(item.validTime);
-        date = dateObj.getDate();
+        year = dateObj.getFullYear();
+        month = dateObj.getMonth();
+        day = dateObj.getDate();
         hour = dateObj.getHours();
 
-        // check if existing property for this id, if not initialize new array
-        if (!arrays[date]) {
-            arrays[date] = [];
+        // check if existing property for this id, if not initialize new arra
+
+        if (!dateArray[year]) {
+            dateArray[year] = [];
         }
 
-        arrays[date].push({
+        if (!dateArray[year][month]) {
+            dateArray[year][month] = [];
+        }
+
+        if (!dateArray[year][month][day]) {
+            dateArray[year][month][day] = [];
+        }
+
+        dateArray[year][month][day].push({
+            year: year,
+            month: month,
+            day: day,
             hour: hour,
             temperature: item.parameters[11].values[0]
         });
 
     });
 
-    console.log(arrays);
+    var viewModel = [];
 
-    /* $.each(arrays, function (index, date) {
-        // console.log(date);
-        var goal = 12;
+    $.each(dateArray, function (index, year){
+        if (year !== undefined) {
+            $.each(year, function(index, month) {
+                if (month !== undefined) {
+                    $.each(month, function(index, day) {
+                        if (day !== undefined){
+                            var middleHourItem = day[Math.round((day.length - 1) / 2)];
+                            viewModel.push(middleHourItem);
+                        }
+                    })
+                    
+                }
+            });
+        }
+    });   
 
-        currentHour = date;
-
-        var closest = currentHour.reduce(function(prev, curr) {
-            return (Math.abs(curr - goal) < Math.abs(prev - goal) ? curr : prev);
-        });
-
-        arrays[index] = [];
-        arrays[index].push(closest);
-    }); */
-
-    // console.log(arrays);
+    $.each(viewModel, function(index, item){        
+        var el = $.map(viewModel, function(val, i) {
+            return "<div>" + val.day + "/" + val.month + " -- " + val.temperature + " C (time: " + val.hour + ")" +  "</div>";
+          });
+          
+          $("#weather").html(el.join(""));
+    });  
 };

@@ -9,7 +9,7 @@ function updateTime() {
     var minute = fixClockValue(dateObj.getMinutes());
     var second = fixClockValue(dateObj.getSeconds());
 
-    $(hourElementId).text(hour + " :");
+    $(hourElementId).text(hour + ":");
     $(minuteElementId).text(minute);
     $(secondElementId).text(second);
 
