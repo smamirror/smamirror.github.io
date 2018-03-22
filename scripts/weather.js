@@ -11,10 +11,16 @@ function updateWeather(){
     setTimeout("updateWeather()", 10 * 60 * 1000);
 }
 
+var weatherSymbols = ["", "Clear sky", "Nearly clear sky", "Variable cloudiness", "Halfclear sky", "Cloudy sky", "Overcast", "Fog", "Light rain showers", "Moderate rain showers",
+"Heavy rain showers", "Thunderstorm", "Light sleet showers", "Moderate sleet showers", "Heavy sleet showers", "Light snow showers", "Moderate snow showers", "Heavy snow showers", "Light rain", "Moderate rain", "Heavy rain", "Thunder", "Light sleet", "Moderate sleet", "Heavy sleet", "Light snowfall", "Moderate snowfall",
+"Heavy snowfall"];
+
 function setWeatherData(data){
     var element = $("#weather");
 
     var list = data.timeSeries;
+
+    console.log(list);
 
     // Initialize a new object
     var dateArray = [];
@@ -48,7 +54,8 @@ function setWeatherData(data){
             month: month,
             day: day,
             hour: hour,
-            temperature: item.parameters[11].values[0]
+            temperature: item.parameters[11].values[0],
+            symbol: item.parameters[18].values[0]
         });
 
     });
@@ -71,9 +78,11 @@ function setWeatherData(data){
         }
     });   
 
+    viewModel = viewModel.slice(0, 6);
+
     $.each(viewModel, function(index, item){        
         var el = $.map(viewModel, function(val, i) {
-            return "<div>" + val.day + "/" + val.month + " -- " + val.temperature + " C (time: " + val.hour + ")" +  "</div>";
+            return "<div>" + val.day + "/" + val.month + " -- " + val.temperature + " C (time: " + val.hour + ") (symbol: " + weatherSymbols[val.symbol] + ")" +  "</div>";
           });
           
           $("#weather").html(el.join(""));
